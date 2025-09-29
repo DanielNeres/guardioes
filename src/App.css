@@ -1,0 +1,209 @@
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #87CEEB; /* Céu */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ... dentro do App.css */
+.river-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* Cor e gradiente ajustados para simular um ambiente mais profundo */
+  background-color: #0080FF; /* Azul mais vivo */
+  background-image: linear-gradient(to bottom, #0080FF 0%, #004080 100%); /* Gradiente azul escuro */
+  animation: scrollRiver 30s linear infinite; 
+}
+/* ... resto do CSS */
+
+/* Animação para simular o movimento do rio */
+@keyframes scrollRiver {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
+
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.health-bar-container {
+  width: 200px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  position: relative;
+}
+
+.health-bar {
+  height: 100%;
+  background-color: lightgreen;
+  transition: width 0.2s ease-out, background-color 0.2s ease-out;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+
+.player {
+  position: absolute;
+  left: 10%; /* Posição X fixa */
+  transform: translateY(-50%); /* Centraliza verticalmente o emoji */
+  font-size: 5vmin; /* Tamanho do emoji baseado na viewport */
+  transition: top 0.1s linear; /* Movimento suave vertical */
+  z-index: 5;
+}
+
+.obstacle {
+  position: absolute;
+  transform: translateY(-50%); /* Centraliza verticalmente o emoji */
+  font-size: 4vmin; /* Tamanho do emoji */
+  white-space: nowrap; /* Garante que o emoji não quebre linha */
+  z-index: 4;
+}
+
+.game-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  z-index: 20;
+}
+
+.start-screen h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #28a745;
+}
+
+.start-screen p {
+  font-size: 1.2em;
+}
+
+.game-over-screen h1 {
+  font-size: 3em;
+  color: #dc3545;
+}
+
+.game-over-screen h2 {
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+/* ... Adicione isso ao final do seu App.css */
+.collision-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  color: #FFD700; /* Ouro */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 15;
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -100%) scale(0.8); }
+}
+
+/* Efeito de Bolhas Subindo */
+/* Efeito de Bolhas Subindo */
+.bubble {
+  position: absolute;
+  bottom: -50px; /* Começa fora da tela */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: bubbleUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 1; /* Abaixo do jogador e dos obstáculos */
+}
+
+/* Animação: bolha sobe e desvanece (Esta permanece igual) */
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh); 
+    opacity: 0;
+  }
+}
+
+/* Decoração Estática: Plantas de fundo (CORREÇÃO DE CAMINHO) */
+.water-plant {
+  position: absolute;
+  bottom: 0;
+  width: 12vmin; 
+  height: 35vmin; 
+  z-index: 2; 
+  /* A forma correta de referenciar arquivos na pasta 'public' a partir do CSS */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  
+  /* Animação para simular o balanço na água */
+  animation: sway 5s ease-in-out infinite alternate;
+  background-color: transparent !important;
+}
+
+.plant-1 { 
+  left: 15%; 
+  animation-delay: 1s;
+}
+.plant-2 { 
+  left: 45%; 
+  width: 15vmin; /* Planta maior */
+  height: 40vmin;
+  animation-duration: 4s;
+}
+.plant-3 { 
+  left: 75%; 
+  animation-delay: 2s;
+}
+
+/* Animação de Balanço */
+@keyframes sway {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(2deg); } /* Balanço sutil */
+}

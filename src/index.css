@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* Evita barras de rolagem */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Reset básico para o corpo */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Atualização do estilo do peixe */
+.player {
+  position: absolute;
+  left: 10%; 
+  transform: translateY(-50%); 
+  font-size: 6vmin; /* Peixe maior e mais visível */
+  transition: top 0.1s linear; 
+  z-index: 5;
+  
+  /* NOVA ANIMAÇÃO DE NADO */
+  animation: swimming 0.5s ease-in-out infinite alternate; 
+}
+
+/* Animação de nado: movimento sutil para cima e para baixo */
+@keyframes swimming {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-55%) rotate(2deg); }
+}
